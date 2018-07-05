@@ -29,7 +29,6 @@ class LRUCache
   end
 
   private
-  # attr_reader :store, :map
 
   def calc!(key)
     val = @prc.call(key)
@@ -45,9 +44,10 @@ class LRUCache
   end
 
   def eject!
-    rm_node = @store.first
-    rm_node.remove
-    @map.delete(rm_node.key)
+    node = @store.first
+    # node.remove
+    @store.remove(node.key)
+    @map.delete(node.key)
     nil
   end
 end

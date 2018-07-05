@@ -15,6 +15,9 @@ class Node
   end
 
   def remove
+    self.prev.next = self.next
+    self.next.prev = self.prev
+    self.prev = self.next = nil
     # optional but useful, connects previous link to next link
     # and removes self from list.
   end
@@ -77,6 +80,7 @@ class LinkedList
     node.next, node.prev, = @tail, @tail.prev
     @tail.prev.next = node
     @tail.prev = node
+    node
   end
 
   def update(key, val)
